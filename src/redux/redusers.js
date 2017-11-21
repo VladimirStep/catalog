@@ -35,6 +35,7 @@ function removeCategory(array, elementId) {
 function catalogApp(state = initialState, action) {
     switch (action.type) {
         case ADD_CATEGORY:
+            // TODO: Add new category for root level
             let counterValue = state.primaryKeyCounter;
             const { removedCategory: oldCategory, leftCategoriesList: newCategoriesList } = removeCategory(state.categories, action.parentId);
 
