@@ -36,9 +36,9 @@ function catalogApp(state = initialState, action) {
     switch (action.type) {
         case ADD_CATEGORY:
             let counterValue = state.primaryKeyCounter;
-            const { removedCategory, leftCategoriesList } = removeCategory(state.categories, action.parentId);
+            const { removedCategory: oldCategory, leftCategoriesList: newCategoriesList } = removeCategory(state.categories, action.parentId);
 
-            if (removedCategory.length > 0) {
+            if (oldCategory.length > 0) {
                 const newCategory = {
                     id: counterValue,
                     parentId: action.parentId,
@@ -48,23 +48,52 @@ function catalogApp(state = initialState, action) {
                 };
                 counterValue += 1;
 
-                const updatedParentCategory = Object.assign({}, removedCategory[0], {
-                    children: removedCategory[0].children.concat(newCategory.id)
+                const updatedParentCategory = Object.assign({}, oldCategory[0], {
+                    children: oldCategory[0].children.concat(newCategory.id)
                 });
 
                 return Object.assign({}, state, {
-                    categories: leftCategoriesList.concat([updatedParentCategory, newCategory]),
+                    categories: newCategoriesList.concat([updatedParentCategory, newCategory]),
                     primaryKeyCounter: counterValue
                 });
             } else {
                 return state;
             }
         case REMOVE_CATEGORY:
-            return state;
+            // TODO: Remove all children
+            const { leftCategoriesList } = removeCategory(state.categories, action.id);
+
+            return Object.assign({}, state, {
+                categories: leftCategoriesList
+            });
         case SHOW_CHILDREN:
-            return state;
+            const { removedCategory: closedCategory, leftCategoriesList: newShowCategoriesList } = removeCategory(state.categories, action.id);
+
+            if (closedCategory.length > 0) {
+                const updatedClosedCategory = Object.assign({}, closedCategory[0], {
+                    childrenVisibility: 'open'
+                });
+
+                return Object.assign({}, state, {
+                    categories: newShowCategoriesList.concat(updatedClosedCategory)
+                });
+            } else {
+                return state;
+            }
         case HIDE_CHILDREN:
-            return state;
+            const { removedCategory: openCategory, leftCategoriesList: newOpenCategoriesList } = removeCategory(state.categories, action.id);
+
+            if (openCategory.length > 0) {
+                const updatedOpenCategory = Object.assign({}, openCategory[0], {
+                    childrenVisibility: 'closed'
+                });
+
+                return Object.assign({}, state, {
+                    categories: newOpenCategoriesList.concat(updatedOpenCategory)
+                });
+            } else {
+                return state;
+            }
         default:
             return state;
     }
