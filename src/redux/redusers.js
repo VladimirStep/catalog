@@ -43,7 +43,7 @@ function removeCategory(categories, categoryId) {
         const children = removedCategory[0].children;
 
         simpleChildrenRemove(newCategoriesArray, children);
-        removeChildFromParent(newCategoriesArray, parentId);
+        removeChildFromParent(newCategoriesArray, parentId, categoryId);
 
         return {
             removedCategory: removedCategory,
@@ -57,9 +57,22 @@ function removeCategory(categories, categoryId) {
     }
 }
 
-function simpleChildrenRemove(array, elementIds) {
-    // TODO: Add recursive function to remove all children
-    return false;
+function simpleChildrenRemove(categories, elementIds) {
+    for (let elementId of elementIds) {
+        for(let category of categories) {
+            if (category.id === elementId) {
+                const index = categories.indexOf(category);
+
+                if (index > -1) {
+                    const removedCategory = categories.splice(index, 1);
+
+                    if (removedCategory.length > 0 && removedCategory[0].children.length > 0) {
+                        simpleChildrenRemove(categories, removedCategory[0].children);
+                    }
+                }
+            }
+        }
+    }
 }
 
 function removeChildFromParent(array, elementId, childId) {
