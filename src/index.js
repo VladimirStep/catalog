@@ -4,6 +4,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import catalogApp from './redux/redusers';
+import Catalog from './presentations/catalog';
 
 let store = createStore(
     catalogApp,
@@ -12,7 +13,7 @@ let store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <div></div>
+        <Catalog />
     </Provider>,
     document.getElementById('root')
 );
