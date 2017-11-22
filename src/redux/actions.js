@@ -1,6 +1,6 @@
 export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const REMOVE_CATEGORY = 'REMOVE_CATEGORY';
-export const SHOW_CHILDREN = 'CHOW_CHILDREN';
+export const SHOW_CHILDREN = 'SHOW_CHILDREN';
 export const HIDE_CHILDREN = 'HIDE_CHILDREN';
 
 export function addCategory(parentId, name) {
