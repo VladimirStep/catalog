@@ -33,7 +33,20 @@ function removeCategory(array, elementId) {
     }
 }
 
-function updateCategory(array, elementId, status) {
+function addChildToParent(array, elementId, childId) {
+    let newArray = array.slice();
+
+    for(let item of newArray) {
+        if (item.id === elementId) {
+            item.children = item.children.concat(childId);
+            return newArray;
+        }
+    }
+
+    return false;
+}
+
+function updateCategoryStatus(array, elementId, status) {
     let newArray = array.slice();
 
     for(let item of newArray) {
@@ -57,33 +70,25 @@ function catalogApp(state = initialState, action) {
                 name: action.name,
                 childrenVisibility: 'closed'
             };
+            counterValue += 1;
 
             if (action.parentId === 0) {
-                const arrayOfCategories = state.categories.slice();
-                counterValue += 1;
-
                 return Object.assign({}, state, {
-                    categories: arrayOfCategories.concat(newCategory),
+                    categories: state.categories.concat(newCategory),
                     primaryKeyCounter: counterValue
                 });
             }
 
-            const { removedCategory: oldCategory, leftCategoriesList: newCategoriesList } = removeCategory(state.categories, action.parentId);
+            const newAddCategoriesList = addChildToParent(state.categories, action.parentId, newCategory.id);
 
-            if (oldCategory.length > 0) {
-                counterValue += 1;
-
-                const updatedParentCategory = Object.assign({}, oldCategory[0], {
-                    children: oldCategory[0].children.concat(newCategory.id)
-                });
-
+            if (newAddCategoriesList) {
                 return Object.assign({}, state, {
-                    categories: newCategoriesList.concat([updatedParentCategory, newCategory]),
+                    categories: newAddCategoriesList.concat(newCategory),
                     primaryKeyCounter: counterValue
                 });
-            } else {
-                return state;
             }
+
+            return state;
         case REMOVE_CATEGORY:
             // TODO: Remove all children and update parent
             const { removedCategory, leftCategoriesList } = removeCategory(state.categories, action.id);
@@ -102,13 +107,13 @@ function catalogApp(state = initialState, action) {
                 return state;
             }
         case SHOW_CHILDREN:
-            const newShowCategoriesList = updateCategory(state.categories, action.id, 'open');
+            const newShowCategoriesList = updateCategoryStatus(state.categories, action.id, 'open');
 
             return Object.assign({}, state, {
                 categories: newShowCategoriesList
             });
         case HIDE_CHILDREN:
-            const newHideCategoriesList = updateCategory(state.categories, action.id, 'closed');
+            const newHideCategoriesList = updateCategoryStatus(state.categories, action.id, 'closed');
 
             return Object.assign({}, state, {
                 categories: newHideCategoriesList
