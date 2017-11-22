@@ -9,30 +9,6 @@ const initialState = {
     primaryKeyCounter: 1
 };
 
-function removeCategory(array, elementId) {
-    let newArray = array.slice();
-    let index;
-
-    for(let item of newArray) {
-        if (item.id === elementId) {
-            index = newArray.indexOf(item);
-            break;
-        }
-    }
-
-    if (index > -1) {
-        return {
-            removedCategory: newArray.splice(index, 1),
-            leftCategoriesList: newArray
-        };
-    } else {
-        return {
-            removedCategory: [],
-            leftCategoriesList: newArray
-        };
-    }
-}
-
 function addChildToParent(array, elementId, childId) {
     let newArray = array.slice();
 
@@ -44,6 +20,68 @@ function addChildToParent(array, elementId, childId) {
     }
 
     return false;
+}
+
+function removeCategory(categories, categoryId) {
+    let newCategoriesArray = categories.slice();
+    let index;
+    let removedCategory;
+
+    for(let item of newCategoriesArray) {
+        if (item.id === categoryId) {
+            index = newCategoriesArray.indexOf(item);
+            break;
+        }
+    }
+
+    if (index > -1) {
+        removedCategory = newCategoriesArray.splice(index, 1);
+    }
+
+    if (removedCategory) {
+        const parentId = removedCategory[0].parentId;
+        const children = removedCategory[0].children;
+
+        simpleChildrenRemove(newCategoriesArray, children);
+        removeChildFromParent(newCategoriesArray, parentId);
+
+        return {
+            removedCategory: removedCategory,
+            leftCategoriesList: newCategoriesArray
+        };
+    } else {
+        return {
+            removedCategory: [],
+            leftCategoriesList: newCategoriesArray
+        };
+    }
+}
+
+function simpleChildrenRemove(array, elementIds) {
+    // TODO: Add recursive function to remove all children
+    return false;
+}
+
+function removeChildFromParent(array, elementId, childId) {
+    for(let item of array) {
+        if (item.id === elementId) {
+            item.children = removeFromArray(item.children, childId);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function removeFromArray(array, element) {
+    let tmpArray = array.slice();
+    const index = tmpArray.indexOf(element);
+
+    if (index > -1) {
+        tmpArray.splice(index, 1);
+    }
+
+    return tmpArray;
 }
 
 function updateCategoryStatus(array, elementId, status) {
@@ -90,22 +128,15 @@ function catalogApp(state = initialState, action) {
 
             return state;
         case REMOVE_CATEGORY:
-            // TODO: Remove all children and update parent
             const { removedCategory, leftCategoriesList } = removeCategory(state.categories, action.id);
 
             if (removedCategory.length > 0) {
-                const parentId = removedCategory[0].parentId;
-                const children = removedCategory[0].children;
-
-
-
                 return Object.assign({}, state, {
                     categories: leftCategoriesList
                 });
 
-            } else {
-                return state;
             }
+            return state;
         case SHOW_CHILDREN:
             const newShowCategoriesList = updateCategoryStatus(state.categories, action.id, 'open');
 
