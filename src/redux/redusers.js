@@ -35,18 +35,28 @@ function removeCategory(array, elementId) {
 function catalogApp(state = initialState, action) {
     switch (action.type) {
         case ADD_CATEGORY:
-            // TODO: Add new category for root level
             let counterValue = state.primaryKeyCounter;
+            const newCategory = {
+                id: counterValue,
+                parentId: action.parentId,
+                children: [],
+                name: action.name,
+                childrenVisibility: 'closed'
+            };
+
+            if (action.parentId === 0) {
+                const arrayOfCategories = state.categories.slice();
+                counterValue += 1;
+
+                return Object.assign({}, state, {
+                    categories: arrayOfCategories.concat(newCategory),
+                    primaryKeyCounter: counterValue
+                });
+            }
+
             const { removedCategory: oldCategory, leftCategoriesList: newCategoriesList } = removeCategory(state.categories, action.parentId);
 
             if (oldCategory.length > 0) {
-                const newCategory = {
-                    id: counterValue,
-                    parentId: action.parentId,
-                    children: [],
-                    name: action.name,
-                    childrenVisibility: 'closed'
-                };
                 counterValue += 1;
 
                 const updatedParentCategory = Object.assign({}, oldCategory[0], {
