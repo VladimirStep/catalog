@@ -2,26 +2,30 @@ import React from 'react';
 import CategoryItem from './category_item';
 
 class CategoriesList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.renderList = this.renderList.bind(this);
-    }
+    findCurrentLevelCategories() {
+        if (this.props.currentLevelCategories && this.props.currentLevelCategories.length > 0) {
+            return this.props.currentLevelCategories
+        }
 
-    renderList() {
-        return (
-            <ul>
-                {this.props.categories.map((category) =>
-                    <CategoryItem key={category.id} category={category} />
-                )}
-            </ul>
-        );
+        let currentLevelCategories = [];
+
+        for(let category of this.props.categories) {
+            if (category.parentId === 0) {
+                currentLevelCategories.push(category);
+            }
+        }
+        return currentLevelCategories;
     }
 
     render() {
+        const parentCategories = this.findCurrentLevelCategories();
+
         return (
-            <div className='list-wrapper'>
-                {this.renderList()}
-            </div>
+            <ul>
+                {parentCategories.map((category) =>
+                    <CategoryItem key={category.id} category={category} categories={this.props.categories}/>
+                )}
+            </ul>
         );
     }
 }
