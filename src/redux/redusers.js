@@ -2,11 +2,14 @@ import {
     ADD_CATEGORY,
     REMOVE_CATEGORY,
     SHOW_CHILDREN,
-    HIDE_CHILDREN} from './actions';
+    HIDE_CHILDREN,
+    SET_CURRENT_CATEGORY
+} from './actions';
 
 const initialState = {
     categories: [],
-    primaryKeyCounter: 1
+    primaryKeyCounter: 1,
+    currentCategory: 0
 };
 
 function addChildToParent(array, elementId, childId) {
@@ -162,7 +165,10 @@ function catalogApp(state = initialState, action) {
             return Object.assign({}, state, {
                 categories: newHideCategoriesList
             });
-
+        case SET_CURRENT_CATEGORY:
+            return Object.assign({}, state, {
+                currentCategory: action.id
+            });
         default:
             return state;
     }

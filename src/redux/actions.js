@@ -2,6 +2,7 @@ export const ADD_CATEGORY = 'ADD_CATEGORY';
 export const REMOVE_CATEGORY = 'REMOVE_CATEGORY';
 export const SHOW_CHILDREN = 'SHOW_CHILDREN';
 export const HIDE_CHILDREN = 'HIDE_CHILDREN';
+export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
 
 export function addCategory(parentId, name) {
     return {
@@ -30,4 +31,11 @@ export function hideChildren(id) {
         type: HIDE_CHILDREN,
         id
     };
+}
+
+export function setCurrentCategory(id) {
+    return {
+        type: SET_CURRENT_CATEGORY,
+        id
+    }
 }
