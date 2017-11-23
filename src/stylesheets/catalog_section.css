@@ -1,0 +1,13 @@
+.catalog-section {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.catalog-section h3 {
+    margin: 0 0 15px;
+}
+
+.catalog-section ul {
+    list-style-type: none;
+}
