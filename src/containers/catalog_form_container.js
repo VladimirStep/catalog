@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import CatalogForm from '../presentations/catalog_form'
-import { addCategory, setCurrentCategory } from "../redux/actions";
+import { addCategory, setCurrentCategory, showChildren } from "../redux/actions";
 
 function mapStateToProps(state) {
     return {
@@ -11,7 +11,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         addNewCategory: (parentId, name) => dispatch(addCategory(parentId, name)),
-        resetCurrentCategory: () => dispatch(setCurrentCategory(0))
+        resetCurrentCategory: () => dispatch(setCurrentCategory(0)),
+        openParentCategory: (parentId) => dispatch(showChildren(parentId))
     };
 }
 

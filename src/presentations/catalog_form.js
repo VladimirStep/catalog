@@ -18,6 +18,7 @@ class CatalogForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.props.openParentCategory(this.props.parentId);
         this.props.addNewCategory(this.props.parentId, this.state.value);
         this.props.resetCurrentCategory();
         this.setState({ value: '' });

@@ -9,7 +9,7 @@ class CategoryItem extends React.Component {
         let listElement = null;
         const childrenCategories = this.props.childrenCategories;
 
-        if (childrenCategories.length > 0) {
+        if (this.props.category.childrenVisibility === 'open' && childrenCategories.length > 0) {
             listElement = <li>
                 <ButtonToggleContainer category={this.props.category} />
                 {this.props.category.name}

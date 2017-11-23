@@ -9,6 +9,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-const ButtonToggleContainer = connect(null, mapDispatchToProps)(ButtonToggle);
+const ButtonToggleContainer = connect(state => state, mapDispatchToProps)(ButtonToggle);
 
 export default ButtonToggleContainer;
