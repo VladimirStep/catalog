@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ButtonRemove extends React.Component {
+class ButtonAdd extends React.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -8,14 +8,14 @@ class ButtonRemove extends React.Component {
 
     handleClick(event) {
         event.preventDefault();
-        this.props.removeCurrentCategory(this.props.categoryId);
+        this.props.addNewSubcategory(this.props.categoryId);
     }
 
     render() {
         return (
-            <button onClick={this.handleClick}>x</button>
+            <button onClick={this.handleClick}>+</button>
         );
     }
 }
 
-export default ButtonRemove;
+export default ButtonAdd;
