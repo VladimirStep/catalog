@@ -8,13 +8,19 @@ class CatalogForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidUpdate() {
+        this.textInput.focus();
+    }
+
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.addNewCategory(0, this.state.value);
+        this.props.addNewCategory(this.props.parentId, this.state.value);
+        this.props.resetCurrentCategory();
+        this.setState({ value: '' });
     }
 
     render() {
@@ -24,6 +30,7 @@ class CatalogForm extends React.Component {
                     type="text"
                     value={this.state.value}
                     onChange={this.handleChange}
+                    ref={input => this.textInput = input}
                 />
                 <button type='submit'>Add Category</button>
             </form>

@@ -1,13 +1,20 @@
 import { connect } from "react-redux";
 import CatalogForm from '../presentations/catalog_form'
-import { addCategory } from "../redux/actions";
+import { addCategory, setCurrentCategory } from "../redux/actions";
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
     return {
-        addNewCategory: (parentId, name) => dispatch(addCategory(parentId, name))
+        parentId: state.currentCategory
     };
 }
 
-const CatalogFormContainer = connect(null, mapDispatchToProps)(CatalogForm);
+function mapDispatchToProps(dispatch) {
+    return {
+        addNewCategory: (parentId, name) => dispatch(addCategory(parentId, name)),
+        resetCurrentCategory: () => dispatch(setCurrentCategory(0))
+    };
+}
+
+const CatalogFormContainer = connect(mapStateToProps, mapDispatchToProps)(CatalogForm);
 
 export default CatalogFormContainer;
