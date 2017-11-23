@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/catalog_form.css';
 
 class CatalogForm extends React.Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class CatalogForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className='catalog-form' onSubmit={this.handleSubmit}>
                 <input
                     type="text"
                     value={this.state.value}
