@@ -3,7 +3,6 @@ import CategoriesListContainer from '../containers/categories_list_container'
 
 class CategoryItem extends React.Component {
     getChildrenCategories() {
-        console.log(this.props);
         let childrenCategories = [];
         if (this.props.category.children.length > 0) {
             for(let childId of this.props.category.children) {
