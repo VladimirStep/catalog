@@ -2,8 +2,6 @@ import { connect } from "react-redux";
 import CategoriesList from "../presentations/categories_list";
 
 function findCurrentLevelCategories(state, props) {
-    console.log(state, props.currentLevelCategories);
-
     if (props.currentLevelCategories && props.currentLevelCategories.length > 0) {
         return props.currentLevelCategories
     }
