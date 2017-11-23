@@ -2,15 +2,14 @@ import React from 'react';
 import BreadcrumbContainer from '../containers/breadcrumb_container';
 import CatalogFormContainer from '../containers/catalog_form_container';
 
-class FormManager extends React.Component {
-    render() {
-        return (
-            <div className='form-manager'>
-                <BreadcrumbContainer />
-                <CatalogFormContainer />
-            </div>
-        );
-    }
+function FormManager() {
+    return (
+        <div className='form-manager'>
+            <h3>Create new category</h3>
+            <BreadcrumbContainer />
+            <CatalogFormContainer />
+        </div>
+    );
 }
 
 export default FormManager;

@@ -1,12 +1,12 @@
 import React from 'react';
-import CategoriesListContainer from '../containers/categories_list_container';
+import CatalogSection from './catalog_section';
 import FormManager from './form_manager';
 
 function Catalog() {
     return (
         <div className='catalog'>
             <FormManager />
-            <CategoriesListContainer />
+            <CatalogSection />
         </div>
     );
 }
