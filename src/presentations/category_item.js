@@ -2,6 +2,7 @@ import React from 'react';
 import CategoriesListContainer from '../containers/categories_list_container'
 import ButtonRemoveContainer from '../containers/button_remove_container'
 import ButtonAddContainer from '../containers/button_add_container'
+import ButtonToggleContainer from '../containers/button_toggle_container'
 
 class CategoryItem extends React.Component {
     render() {
@@ -10,6 +11,7 @@ class CategoryItem extends React.Component {
 
         if (childrenCategories.length > 0) {
             listElement = <li>
+                <ButtonToggleContainer category={this.props.category} />
                 {this.props.category.name}
                 <ButtonAddContainer categoryId={this.props.category.id} />
                 <ButtonRemoveContainer categoryId={this.props.category.id} />
@@ -17,6 +19,7 @@ class CategoryItem extends React.Component {
             </li>;
         } else {
             listElement = <li>
+                <ButtonToggleContainer category={this.props.category} />
                 {this.props.category.name}
                 <ButtonAddContainer categoryId={this.props.category.id} />
                 <ButtonRemoveContainer categoryId={this.props.category.id} />
