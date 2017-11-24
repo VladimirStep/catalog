@@ -1,0 +1,16 @@
+div.bullet::before {
+    content: '\25CF';
+    font-size: 0.68em;
+}
+
+div.caret-down::before {
+    cursor: pointer;
+    content: '\25BC';
+    font-size: 0.8em;
+}
+
+div.caret-right::before {
+    cursor: pointer;
+    content: '\25B6';
+    font-size: 0.8em;
+}

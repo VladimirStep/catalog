@@ -11,3 +11,8 @@
 .catalog-section ul {
     list-style-type: none;
 }
+
+div.category-name {
+    display: inline-block;
+    margin: 0 10px;
+}

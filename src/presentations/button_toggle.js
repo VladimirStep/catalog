@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/button_toggle.css'
 
 class ButtonToggle extends React.Component {
     constructor(props) {
@@ -22,12 +23,12 @@ class ButtonToggle extends React.Component {
 
         if (this.props.category.children.length > 0) {
             if (this.props.category.childrenVisibility === 'open') {
-                button = <button onClick={this.handleClose}>open</button>
+                button = <div className='button-pointer caret-down' onClick={this.handleClose}></div>
             } else {
-                button = <button onClick={this.handleOpen}>closed</button>
+                button = <div className='button-pointer caret-right' onClick={this.handleOpen}></div>
             }
         } else {
-            button = <button>o</button>
+            button = <div className='button-pointer bullet'></div>
         }
 
 

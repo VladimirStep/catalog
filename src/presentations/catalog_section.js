@@ -7,7 +7,7 @@ function CatalogSection() {
     return (
         <div className='catalog-section'>
             <h3>
-                Catalog
+                <div className='category-name'>Catalog</div>
                 <ButtonAddContainer categoryId={0} />
             </h3>
             <CategoriesListContainer />

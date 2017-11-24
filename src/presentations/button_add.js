@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/button_add.css';
 
 class ButtonAdd extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class ButtonAdd extends React.Component {
 
     render() {
         return (
-            <button onClick={this.handleClick}>+</button>
+            <div className='button-pointer button-add' onClick={this.handleClick}></div>
         );
     }
 }

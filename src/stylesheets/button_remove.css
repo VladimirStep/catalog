@@ -1,0 +1,7 @@
+div.button-remove::before {
+    cursor: pointer;
+    content: '\2297';
+    font-size: 1em;
+    color: #7f1716;
+    vertical-align: -10%;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/button_remove.css'
 
 class ButtonRemove extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class ButtonRemove extends React.Component {
 
     render() {
         return (
-            <button onClick={this.handleClick}>x</button>
+            <div className='button-pointer button-remove' onClick={this.handleClick}></div>
         );
     }
 }
