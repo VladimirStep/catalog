@@ -6,7 +6,7 @@ const Button = styled.div`
     display: inline-block;
     width: 20px;
     text-align: center;
-    vertical-align: 10%;
+    vertical-align: 15%;
 `;
 
 const Bullet = Button.extend`
