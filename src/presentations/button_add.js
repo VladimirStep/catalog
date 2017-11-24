@@ -7,9 +7,10 @@ const Add = styled.div`
     text-align: center;
     &::before {
         cursor: pointer;
-        content: '\\2295';
+        content: '\\002b';
         font-size: 1em;
         color: #257f21;
+        font-weight: bold;
     }
 `;
 

@@ -7,9 +7,10 @@ const Remove = styled.div`
     text-align: center;
     &::before {
         cursor: pointer;
-        content: '\\2297';
+        content: '\\00d7';
         font-size: 1em;
-        color: #7f1716;    
+        color: #7f1716;
+        font-weight: bold;    
     }
 `;
 
