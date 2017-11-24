@@ -10,7 +10,8 @@ function CategoryItem(props) {
     let listElement = null;
     const childrenCategories = props.childrenCategories;
 
-    if (props.category.childrenVisibility === ChildrenVisibilityStatus.OPENED && childrenCategories.length > 0) {
+    if (props.category.childrenVisibility === ChildrenVisibilityStatus.OPENED
+        && childrenCategories.length > 0) {
         listElement = <li>
             <ButtonToggleContainer category={props.category} />
             <div className='category-name'>{props.category.name}</div>

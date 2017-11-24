@@ -134,7 +134,8 @@ function catalogApp(state = initialState, action) {
                 });
             }
 
-            const newAddCategoriesList = addChildToParent(state.categories, action.parentId, newCategory.id);
+            const newAddCategoriesList = addChildToParent(state.categories,
+                action.parentId, newCategory.id);
 
             if (newAddCategoriesList) {
                 return Object.assign({}, state, {
@@ -145,7 +146,8 @@ function catalogApp(state = initialState, action) {
 
             return state;
         case REMOVE_CATEGORY:
-            const { removedCategory, leftCategoriesList } = removeCategory(state.categories, action.id);
+            const { removedCategory, leftCategoriesList } = removeCategory(state.categories,
+                action.id);
 
             if (removedCategory.length > 0) {
                 return Object.assign({}, state, {
@@ -155,13 +157,15 @@ function catalogApp(state = initialState, action) {
             }
             return state;
         case SHOW_CHILDREN:
-            const newShowCategoriesList = updateCategoryStatus(state.categories, action.id, ChildrenVisibilityStatus.OPENED);
+            const newShowCategoriesList = updateCategoryStatus(state.categories,
+                action.id, ChildrenVisibilityStatus.OPENED);
 
             return Object.assign({}, state, {
                 categories: newShowCategoriesList
             });
         case HIDE_CHILDREN:
-            const newHideCategoriesList = updateCategoryStatus(state.categories, action.id, ChildrenVisibilityStatus.CLOSED);
+            const newHideCategoriesList = updateCategoryStatus(state.categories,
+                action.id, ChildrenVisibilityStatus.CLOSED);
 
             return Object.assign({}, state, {
                 categories: newHideCategoriesList
