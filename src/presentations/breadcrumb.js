@@ -1,18 +1,27 @@
 import React from 'react';
-import '../stylesheets/breadcrumb.css';
+import styled from 'styled-components';
+
+const Row = styled.p`
+        margin: 0 0 5px;
+        font-size: 13px;
+    `;
+
+const Devider = styled.span`
+        margin: 0 2px;
+    `;
 
 function Breadcrumb(props) {
     return (
-        <p className='breadcrumb'>
+        <Row>
             Catalog
-            <span className='divider'>/</span>
+            <Devider>/</Devider>
             {props.chain.map((category) =>
                 <span key={category.id}>{category.name}
-                    <span className='divider'>/</span>
+                    <Devider>/</Devider>
                 </span>
             )}
             ...
-        </p>
+        </Row>
     );
 }
 

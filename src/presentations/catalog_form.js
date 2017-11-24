@@ -1,5 +1,29 @@
 import React from 'react';
-import '../stylesheets/catalog_form.css';
+import styled from 'styled-components';
+
+const Form = styled.form`
+        margin: 0;
+    `;
+
+const Input = styled.input`
+        border: none;
+        border-radius: 3px;
+        padding: 10px 20px;
+    `;
+
+const Submit = styled.button`
+        border: none;
+        border-radius: 3px;
+        padding: 10px 20px;
+        margin: 0 10px;
+        cursor: pointer;
+        color: #ffffff;
+        text-decoration: none;
+        background-color: #536fb8;
+        &:hover {
+            background-color: #4e5fa3;
+        }
+    `;
 
 class CatalogForm extends React.Component {
     constructor(props) {
@@ -27,15 +51,15 @@ class CatalogForm extends React.Component {
 
     render() {
         return (
-            <form className='catalog-form' onSubmit={this.handleSubmit}>
-                <input
+            <Form onSubmit={this.handleSubmit}>
+                <Input
                     type="text"
                     value={this.state.value}
                     onChange={this.handleChange}
-                    ref={input => this.textInput = input}
+                    innerRef={input => this.textInput = input}
                 />
-                <button type='submit'>Add Category</button>
-            </form>
+                <Submit type='submit'>Add Category</Submit>
+            </Form>
         );
     }
 }

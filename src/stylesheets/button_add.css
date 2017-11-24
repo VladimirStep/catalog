@@ -1,7 +1,0 @@
-div.button-add::before {
-    cursor: pointer;
-    content: '\2295';
-    font-size: 1em;
-    color: #257f21;
-    vertical-align: -10%;
-}

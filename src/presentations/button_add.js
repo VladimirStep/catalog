@@ -1,5 +1,17 @@
 import React from 'react';
-import '../stylesheets/button_add.css';
+import styled from 'styled-components';
+
+const Add = styled.div`
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    &::before {
+        cursor: pointer;
+        content: '\\2295';
+        font-size: 1em;
+        color: #257f21;
+    }
+`;
 
 class ButtonAdd extends React.Component {
     constructor(props) {
@@ -14,7 +26,7 @@ class ButtonAdd extends React.Component {
 
     render() {
         return (
-            <div className='button-pointer button-add' onClick={this.handleClick}></div>
+            <Add onClick={this.handleClick}></Add>
         );
     }
 }

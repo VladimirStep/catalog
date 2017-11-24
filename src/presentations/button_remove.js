@@ -1,5 +1,17 @@
 import React from 'react';
-import '../stylesheets/button_remove.css'
+import styled from 'styled-components';
+
+const Remove = styled.div`
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    &::before {
+        cursor: pointer;
+        content: '\\2297';
+        font-size: 1em;
+        color: #7f1716;    
+    }
+`;
 
 class ButtonRemove extends React.Component {
     constructor(props) {
@@ -14,7 +26,7 @@ class ButtonRemove extends React.Component {
 
     render() {
         return (
-            <div className='button-pointer button-remove' onClick={this.handleClick}></div>
+            <Remove onClick={this.handleClick}></Remove>
         );
     }
 }

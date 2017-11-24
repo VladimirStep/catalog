@@ -4,7 +4,7 @@ import FormManager from './form_manager';
 
 function Catalog() {
     return (
-        <div className='catalog'>
+        <div>
             <FormManager />
             <CatalogSection />
         </div>

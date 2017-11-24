@@ -1,15 +1,25 @@
 import React from 'react';
 import BreadcrumbContainer from '../containers/breadcrumb_container';
 import CatalogFormContainer from '../containers/catalog_form_container';
-import '../stylesheets/form_manager.css';
+import styled from 'styled-components';
+
+const HeaderForm = styled.div`
+        width: 100%;
+        background-color: #6ba6fb;
+        padding: 20px;
+    `;
+
+const FormTitle = styled.h3`
+        margin: 0 0 15px;
+    `;
 
 function FormManager() {
     return (
-        <div className='form-manager'>
-            <h3>Create new category</h3>
+        <HeaderForm>
+            <FormTitle>Create new category</FormTitle>
             <BreadcrumbContainer />
             <CatalogFormContainer />
-        </div>
+        </HeaderForm>
     );
 }
 

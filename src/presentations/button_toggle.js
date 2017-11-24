@@ -1,6 +1,36 @@
 import React from 'react';
-import '../stylesheets/button_toggle.css'
 import {ChildrenVisibilityStatus} from "../redux/actions";
+import styled from 'styled-components';
+
+const Button = styled.div`
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    vertical-align: 10%;
+`;
+
+const Bullet = Button.extend`
+    &::before {
+        content: '\\25CF';
+        font-size: 0.68em;
+    }
+`;
+
+const CaretDown = Button.extend`
+    &::before {
+        cursor: pointer;
+        content: '\\25BC';
+        font-size: 0.8em;
+    }
+`;
+
+const CaretRight = Button.extend`
+    &::before {
+        cursor: pointer;
+        content: '\\25B6';
+        font-size: 0.8em;    
+    }
+`;
 
 class ButtonToggle extends React.Component {
     constructor(props) {
@@ -24,12 +54,12 @@ class ButtonToggle extends React.Component {
 
         if (this.props.category.children.length > 0) {
             if (this.props.category.childrenVisibility === ChildrenVisibilityStatus.OPENED) {
-                button = <div className='button-pointer caret-down' onClick={this.handleClose}></div>
+                button = <CaretDown onClick={this.handleClose}></CaretDown>
             } else {
-                button = <div className='button-pointer caret-right' onClick={this.handleOpen}></div>
+                button = <CaretRight onClick={this.handleOpen}></CaretRight>
             }
         } else {
-            button = <div className='button-pointer bullet'></div>
+            button = <Bullet></Bullet>
         }
 
 
