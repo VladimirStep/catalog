@@ -3,7 +3,8 @@ import {
     REMOVE_CATEGORY,
     SHOW_CHILDREN,
     HIDE_CHILDREN,
-    SET_CURRENT_CATEGORY
+    SET_CURRENT_CATEGORY,
+    ChildrenVisibilityStatus
 } from './actions';
 
 const initialState = {
@@ -122,7 +123,7 @@ function catalogApp(state = initialState, action) {
                 parentId: action.parentId,
                 children: [],
                 name: action.name,
-                childrenVisibility: 'closed'
+                childrenVisibility: ChildrenVisibilityStatus.CLOSED
             };
             counterValue += 1;
 
@@ -154,13 +155,13 @@ function catalogApp(state = initialState, action) {
             }
             return state;
         case SHOW_CHILDREN:
-            const newShowCategoriesList = updateCategoryStatus(state.categories, action.id, 'open');
+            const newShowCategoriesList = updateCategoryStatus(state.categories, action.id, ChildrenVisibilityStatus.OPENED);
 
             return Object.assign({}, state, {
                 categories: newShowCategoriesList
             });
         case HIDE_CHILDREN:
-            const newHideCategoriesList = updateCategoryStatus(state.categories, action.id, 'closed');
+            const newHideCategoriesList = updateCategoryStatus(state.categories, action.id, ChildrenVisibilityStatus.CLOSED);
 
             return Object.assign({}, state, {
                 categories: newHideCategoriesList

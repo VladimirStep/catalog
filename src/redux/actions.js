@@ -4,6 +4,11 @@ export const SHOW_CHILDREN = 'SHOW_CHILDREN';
 export const HIDE_CHILDREN = 'HIDE_CHILDREN';
 export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
 
+export const ChildrenVisibilityStatus = {
+    OPENED: 'OPENED',
+    CLOSED: 'CLOSED'
+};
+
 export function addCategory(parentId, name) {
     return {
         type: ADD_CATEGORY,
