@@ -10,7 +10,11 @@ const Remove = styled.div`
         content: '\\00d7';
         font-size: 1em;
         color: #7f1716;
-        font-weight: bold;    
+        font-weight: bold;
+        opacity: 0.6;    
+    }
+    &:hover::before {
+        opacity: 1;
     }
 `;
 

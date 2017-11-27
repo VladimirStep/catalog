@@ -11,6 +11,10 @@ const Add = styled.div`
         font-size: 1em;
         color: #257f21;
         font-weight: bold;
+        opacity: 0.6;
+    }
+    &:hover::before {
+        opacity: 1;
     }
 `;
 
